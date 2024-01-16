@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 void main(){
   runApp(
@@ -23,12 +24,37 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+
+  int ballNum =  1;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Image.asset('images/ball1.png'),
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        TextButton(
+            onPressed: (){
+              setState(() {
+                ballNum = Random().nextInt(5)+1;
+              });
+            },
+            child: Image.asset('images/ball$ballNum.png')
+        ),
+        SizedBox(height: MediaQuery.of(context).size.height*0.1),
+        TextButton(
+          style: TextButton.styleFrom(
+            backgroundColor:Colors.black38,
+            foregroundColor: Colors.blue,
+          ),
+          onPressed: (){
+          },
+          child: Text(
+              "Do you want a second opinion?",
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          )
+        )
+      ],
     );
   }
 }
